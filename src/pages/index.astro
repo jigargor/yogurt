@@ -1,73 +1,51 @@
 ---
 import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
 import { classFacts } from "../data/class";
 
-const description =
-  "Sunday park yoga in Tustin. Sixty minutes, all levels, donation-based. Weather call on this page.";
+const description = `${site.name}: ${site.tagline} Free Body park class and personal training in Orange County.`;
 ---
 
-<Base title="Yoga in the park" description={description}>
-  <div class="frame">
-    <p class="kicker">{classFacts.kicker}</p>
-    <h1 class="headline">{classFacts.title}</h1>
+<Base title={site.name} description={description}>
+  <p class="kicker">{site.name}</p>
+  <h1 class="headline">{site.hero}</h1>
+  <p class="lede">{site.who}</p>
 
-    <div class="meta-row" aria-label="Drawing metadata">
-      <span>{classFacts.dwg}</span>
-      <span>{classFacts.sheet}</span>
-      <span>{classFacts.scale}</span>
-    </div>
+  <section class="offerings" aria-labelledby="offerings-heading">
+    <h2 id="offerings-heading" class="section-label">
+      {site.offeringsSubhead}
+    </h2>
+    <ul class="offering-list">
+      <li class="offering">
+        <p class="cell-label">Offering</p>
+        <h3 class="offering-title">
+          <a href="/free-body">{classFacts.title}</a>
+        </h3>
+        <p class="muted">
+          Sunday park yoga in Tustin. Sixty minutes. Donation-based. Weather call
+          on the class page.
+        </p>
+        <p class="offering-cta">
+          <a href="/free-body">Class facts and weather</a>
+        </p>
+      </li>
+      <li class="offering">
+        <p class="cell-label">Offering</p>
+        <h3 class="offering-title">
+          <a href="/training">Personal training</a>
+        </h3>
+        <p class="muted">
+          One-to-one strength work. Inquire for rates. Yoga privates under the
+          same path.
+        </p>
+        <p class="offering-cta">
+          <a href="/training">How to inquire</a>
+        </p>
+      </li>
+    </ul>
+  </section>
 
-    <p class="voice">{classFacts.voice}</p>
-
-    <section class="weather" aria-label="Weather call">
-      <p class="cell-label">Weather</p>
-      <p class="weather-status" data-status={classFacts.weather.status}>
-        {classFacts.weather.status === "on" && "On"}
-        {classFacts.weather.status === "cancelled" && "Cancelled"}
-        {classFacts.weather.status === "moved" && "Moved"}
-        {" · "}
-        {classFacts.weather.forDate}
-      </p>
-      <p class="muted">{classFacts.weather.note}</p>
-    </section>
-
-    <section class="title-block" aria-label="Class title block">
-      <div class="cell">
-        <p class="cell-label">When</p>
-        <p class="cell-value">{classFacts.when}</p>
-      </div>
-      <div class="cell">
-        <p class="cell-label">Where</p>
-        <p class="cell-value">{classFacts.where}</p>
-      </div>
-      <div class="cell">
-        <p class="cell-label">Cost</p>
-        <p class="cell-value">{classFacts.cost}</p>
-      </div>
-      <div class="cell">
-        <p class="cell-label">Level</p>
-        <p class="cell-value">{classFacts.level}</p>
-      </div>
-      <div class="cell">
-        <p class="cell-label">Bring</p>
-        <p class="cell-value">{classFacts.bring}</p>
-      </div>
-      <div class="cell">
-        <p class="cell-label">Find</p>
-        <p class="cell-value">{classFacts.find}</p>
-      </div>
-      <div class="cell cell-span">
-        <p class="cell-label">Notes</p>
-        <ol class="notes">
-          {classFacts.notes.map((note, i) => (
-            <li>
-              {i + 1}. {note}
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-
-    <p class="rev">{classFacts.revision}</p>
-  </div>
+  <p class="home-about">
+    <a href="/about">About and scope</a>
+  </p>
 </Base>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   yogurt - global.css (Free Body)
+   yogurt - global.css (Métier / Free Body tokens)
    Tokens from design/free-body. If a color/space/type value is not a token
    below, it does not exist. Red is for emphasis once per view.
    ========================================================================== */
@@ -47,6 +47,7 @@
   --text-2xl: clamp(2rem, 6vw, 3.25rem);
 
   --measure: 40rem;
+  --page-max: 52rem;
   --page-pad: var(--space-2);
   --border: 2px solid var(--ink);
 }
@@ -99,8 +100,14 @@ a:hover {
 h1,
 h2,
 h3,
-p {
+p,
+ul {
   margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 .skip-link {
@@ -120,12 +127,83 @@ p {
   top: var(--space-1);
 }
 
-.frame {
+/* ---- Shell / chrome --------------------------------------------------- */
+
+.shell {
   border: var(--border);
+  display: flex;
+  flex-direction: column;
   margin: var(--page-pad);
   min-height: calc(100vh - 2 * var(--page-pad));
-  padding: var(--space-3);
 }
+
+.site-header {
+  align-items: baseline;
+  border-bottom: 1px solid var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+}
+
+.wordmark {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+}
+
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.page {
+  flex: 1;
+  margin: 0 auto;
+  max-width: var(--page-max);
+  padding: var(--space-3);
+  width: 100%;
+}
+
+.site-footer {
+  border-top: 1px solid var(--ink);
+  padding: var(--space-2) var(--space-3);
+}
+
+.footer-brand {
+  font-weight: 700;
+}
+
+.footer-links {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  margin-top: var(--space-1);
+}
+
+/* ---- Type patterns ---------------------------------------------------- */
 
 .kicker {
   font-family: var(--font-mono);
@@ -143,6 +221,34 @@ p {
   margin-top: var(--space-1);
 }
 
+.lede {
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-top: var(--space-3);
+  max-width: var(--measure);
+}
+
+.lede.tight,
+.voice.tight {
+  margin-top: var(--space-1);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-top: var(--space-4);
+  text-transform: uppercase;
+}
+
+.voice {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-top: var(--space-3);
+  max-width: var(--measure);
+}
+
 .meta-row {
   display: flex;
   flex-wrap: wrap;
@@ -154,12 +260,102 @@ p {
   text-transform: uppercase;
 }
 
-.voice {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  margin-top: var(--space-3);
-  max-width: var(--measure);
+.muted {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 400;
 }
+
+.person-name {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-top: var(--space-1);
+}
+
+.home-about {
+  margin-top: var(--space-4);
+}
+
+.prose-block p + p {
+  margin-top: var(--space-1);
+}
+
+.prose-block > p:first-of-type {
+  margin-top: var(--space-1);
+}
+
+.scope-block .voice {
+  color: var(--ink);
+}
+
+.contact-list {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+.contact-list li + li {
+  margin-top: 0.35rem;
+}
+
+.cta-link {
+  font-weight: 700;
+}
+
+.inquire {
+  margin-bottom: var(--space-2);
+}
+
+/* ---- Offerings (Home) ------------------------------------------------- */
+
+.offerings {
+  margin-top: var(--space-2);
+}
+
+.offering-list {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 720px) {
+  .offering-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.offering {
+  background: var(--cell);
+  border: var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2);
+}
+
+.offering-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.offering-title a {
+  text-decoration: none;
+}
+
+.offering-title a:hover {
+  text-decoration: underline;
+}
+
+.offering-cta {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  margin-top: auto;
+  padding-top: var(--space-1);
+}
+
+/* ---- Free Body title block -------------------------------------------- */
 
 .title-block {
   background: var(--cell);
@@ -262,10 +458,4 @@ p {
   flex-direction: column;
   gap: var(--space-2);
   max-width: var(--measure);
-}
-
-.muted {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  font-weight: 400;
 }

@@ -1,12 +1,12 @@
 # yogurt
 
-Brand site for **Free Body**: Sunday park yoga in Tustin. Astro static. Free Body tokens.
+Brand site for **Métier**: yoga and strength training (org site). Free Body is the Sunday park class offering. Astro static. Free Body tokens for v0.
 
-Launch target: first class Sunday, December 6, 2026.
+Launch target: first Free Body class Sunday, December 6, 2026.
 
 ## Status
 
-Skeleton + discovery record. Holding page at `/` with bracketed park name and Instagram handle until those lock. Spec: [`docs/05-brand-site-spec-v0.1.md`](docs/05-brand-site-spec-v0.1.md). Build brief: [`docs/06-build-brief.md`](docs/06-build-brief.md).
+v0 org IA live: `/`, `/free-body`, `/training`, `/about`. `noindex` stays on until domain, email, Instagram, and park name are set in [`src/data/site.ts`](src/data/site.ts) and [`src/data/class.ts`](src/data/class.ts). Spec: [`docs/05-brand-site-spec-v0.2.md`](docs/05-brand-site-spec-v0.2.md).
 
 ## Stack
 
@@ -25,7 +25,9 @@ npm run dev
 npm run build
 ```
 
-Class facts and the weather call live in [`src/data/class.ts`](src/data/class.ts). Edit that file from a phone browser via github.dev when you need a Saturday night cancel.
+- Org identity / mailto / Instagram: [`src/data/site.ts`](src/data/site.ts)
+- Free Body facts and weather: [`src/data/class.ts`](src/data/class.ts) (edit from phone via github.dev for Saturday night cancels)
+- Training copy: [`src/data/training.ts`](src/data/training.ts)
 
 ## Docs
 
@@ -35,7 +37,9 @@ Class facts and the weather call live in [`src/data/class.ts`](src/data/class.ts
 | [`docs/01-six-directions-readme.md`](docs/01-six-directions-readme.md) | Flyer art-direction reference |
 | [`docs/02-decision-log.md`](docs/02-decision-log.md) | Decisions |
 | [`docs/03-parking-lot.md`](docs/03-parking-lot.md) | Deferred items |
-| [`docs/04-interview.md`](docs/04-interview.md) | Interview record (PROVISIONAL until voice confirm) |
+| [`docs/04-interview.md`](docs/04-interview.md) | Interview record |
+| [`docs/05-brand-site-spec-v0.2.md`](docs/05-brand-site-spec-v0.2.md) | Brand site spec (current) |
+| [`docs/06-build-brief.md`](docs/06-build-brief.md) | Coding-agent build brief |
 | [`design/free-body/`](design/free-body/) | Renders + token sheet |
 
 ## Voice

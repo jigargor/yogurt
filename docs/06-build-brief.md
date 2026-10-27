@@ -1,106 +1,85 @@
 # Build brief (coding agent)
 
-Self-contained brief to build and harden **v0** of the Free Body site in this repo. Spec: [05-brand-site-spec-v0.1.md](05-brand-site-spec-v0.1.md).
+Build **Métier v0**: an organization site, not a single flyer page.
+
+Spec: [05-brand-site-spec-v0.2.md](05-brand-site-spec-v0.2.md). Decisions: [02-decision-log.md](02-decision-log.md).
 
 ## Goal
 
-Ship a public static site before Sunday, December 6, 2026 that tells a stranger: when, where, cost, level, what to bring, where to find Instagram, and whether this Sunday is on.
+Before Sunday, December 6, 2026, ship a public static site where a stranger can tell who Métier is, what Free Body and Personal training are, how to start, and whether this Sunday’s park class is on.
 
-## Stack (locked for v0)
+## Stack
 
 - Astro static + TypeScript strict (`astro check && astro build`)
-- Cloudflare Pages
-- No client islands required
-- No form backend, no PII store, no Stripe, no email list
-- Optional: Cloudflare Web Analytics (dashboard toggle only)
+- Cloudflare Pages (`npm run build` → `dist`)
+- No islands required
+- No form backend, Stripe, email list, or booking engine
+- Contact: `mailto:` (ADR005)
+- Optional: Cloudflare Web Analytics dashboard toggle
 
-## Design system
+## Design
 
-Tokens in [`src/styles/global.css`](../src/styles/global.css):
+Tokens in `src/styles/global.css` (Free Body palette site-wide for v0):
 
-| Token | Hex | Role |
-|---|---|---|
-| `--paper` | `#E9EFE2` | Ground |
-| `--cell` | `#F3F6EF` | Title block fills |
-| `--line` | `#9DB896` | Grid / envelope |
-| `--ink` | `#1F2B27` | Type and rules |
-| `--red` | `#B5392A` | Revision / cancelled weather only |
-
-Fonts: Space Grotesk 600/700, IBM Plex Mono 400/500/600 (via `@fontsource`).
-
-Reference renders: [`design/free-body/`](../design/free-body/).
-
-Rules: [`.cursor/rules/design-system.mdc`](../.cursor/rules/design-system.mdc), [`.cursor/rules/voice-and-copy.mdc`](../.cursor/rules/voice-and-copy.mdc).
-
-## Pages (v0)
-
-| Route | Job |
+| Token | Hex |
 |---|---|
-| `/` | Holding / class page: kicker, title, metadata, voice, weather, title block, notes, rev line |
-| `/404` | Dry miss; link home |
+| `--paper` | `#E9EFE2` |
+| `--cell` | `#F3F6EF` |
+| `--line` | `#9DB896` |
+| `--ink` | `#1F2B27` |
+| `--red` | `#B5392A` |
 
-Data: [`src/data/class.ts`](../src/data/class.ts). Weather edits happen there.
+Fonts: Space Grotesk 600/700, IBM Plex Mono 400/500/600.
 
-## Components to add when hardening v0
+Masthead wordmark: **Métier**. Free Body is an offering name, not the site title.
 
-Skeleton already has layout + page. Prefer small Astro components if the page grows:
+Voice: [`.cursor/rules/voice-and-copy.mdc`](../.cursor/rules/voice-and-copy.mdc).
 
-- `TitleBlock.astro` from class facts
-- `WeatherCall.astro` from `classFacts.weather`
-- Optional later: SVG free-body figure (not required for v0 launch)
+## Pages to implement
 
-## Content rules
+Replace the current flyer-only holding `index.astro` with a real IA:
 
-- No em or en dashes anywhere in visitor-readable copy
-- No genre vocabulary (journey, hold space, zen, lotus, Om, chakras, mandalas, ...)
-- Do not ship brackets: replace `[Park name]` and `@[handle]` before removing `noindex`
-- Keep `noindex` on until domain + park + handle are real
+| Route | Content |
+|---|---|
+| `/` | Kicker Métier; hero “Movement practice. Clear scope. Show up.”; short who line; two offering cards/links (Free Body, Personal training); primary CTAs |
+| `/free-body` | Move current title block + weather + notes here; voice can keep park-class register |
+| `/training` | What PT is; who for; inquire mailto; one line on privates; rates “inquire” or a range if supplied |
+| `/about` | Jigar as teacher/founder; scope “Yoga and strength work. Not therapy.”; mailto contact; optional wholistic once |
+| `/404` | Dry; link to `/` |
 
-## Weather edit path (R04)
+Shared: simple nav (Home, Free Body, Training, About) + footer (Métier, mailto, Instagram when O002 exists).
 
-1. Open repo on phone (github.dev or Cursor)
-2. Edit `src/data/class.ts` → `weather.status` and `weather.note` and `forDate`
-3. Commit to `main` (Pages auto-deploy)
+Data: keep weather/class facts in `src/data/class.ts`. Add `src/data/site.ts` for org name, mailto, social, nav labels.
 
-Document this in the README when deploy is wired.
+## Copy seeds (locked voice)
 
-## Deploy
+- Home hero: Movement practice. Clear scope. Show up.
+- Offerings subhead: Park class. Training. No soft sell.
+- About scope: Yoga and strength work. Not therapy.
+- Free Body notes: keep the four existing notes.
 
-1. Create Cloudflare Pages project from this repo
-2. Build command: `npm run build`
-3. Output: `dist`
-4. Set custom domain when O001 resolves; update `site` in `astro.config.mjs`
-5. Keep `public/_headers` as shipped
+Do not ship brackets. Keep `noindex` until domain, park name, and handle are real.
 
-## QA gates before public
+## Weather edit (R07)
+
+Edit `src/data/class.ts` from phone (github.dev / Cursor) → commit → Pages deploy. Document in README when deploy is wired.
+
+## QA gates
 
 - [ ] `npm run build` passes
-- [ ] No em/en dashes in `src/` or `docs/` visitor strings (`rg` check)
-- [ ] Contrast: ink on paper and red on paper hold WCAG for intended sizes
-- [ ] 390 px phone: title block usable within one short scroll
-- [ ] Weather status on / cancelled / moved each readable
-- [ ] FIND is a real handle; WHERE is a real park name
-- [ ] `noindex` removed only after the above
-- [ ] Favicon loads
-- [ ] 404 returns the custom page
+- [ ] No em/en dashes in visitor copy
+- [ ] Home does not look like a single flyer title block
+- [ ] All four routes + 404 work on 390 px
+- [ ] Weather on/cancelled/moved readable
+- [ ] Training has inquire, not fake checkout
+- [ ] About carries scope line
+- [ ] Favicon + `_headers` intact
+- [ ] `noindex` removed only after O001/O002/O004 filled
 
 ## Out of scope (v0)
 
-- Booking engine, accounts, chat
-- Online waiver with PII storage
-- Blog / writing
-- Sequencing app embed
-- Soft Ground or other flyer directions on the site
-- Dark mode toggle
-- Map embed (Could; skip unless free and fast)
+Booking engine, accounts, chat, blog, app embed, online waiver PII, Soft Ground visuals, dark mode toggle, map embed (unless trivial).
 
-## Post-v0 pointers
+## Definition of done
 
-- v1: PT page + external booking
-- v2: writing collection
-- Bring flyer generator into a repo (P001) before promising SHEET nn OF 52 weekly
-- Draft waiver/consent for human review (P007)
-
-## Definition of done (v0)
-
-Public URL. Facts true. Weather editable in under five minutes. FIND works. Voice clean. First class can point people here.
+Public URL. Org IA live. Free Body weather editable in under five minutes. Contact works. Voice clean. Ready to point people here for Dec 6.

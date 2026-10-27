@@ -1,15 +1,19 @@
 ---
 import "../styles/global.css";
-import { classFacts } from "../data/class";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
 
 interface Props {
   title: string;
   description: string;
+  /** Defaults to site.noindex */
   noindex?: boolean;
 }
 
-const { title, description, noindex = true } = Astro.props;
-const siteTitle = `${title} · ${classFacts.title}`;
+const { title, description, noindex = site.noindex } = Astro.props;
+const siteTitle =
+  title === site.name ? site.name : `${title} · ${site.name}`;
 ---
 
 <!doctype html>
@@ -29,6 +33,7 @@ const siteTitle = `${title} · ${classFacts.title}`;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
 
@@ -38,8 +43,12 @@ const siteTitle = `${title} · ${classFacts.title}`;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <main id="main">
-      <slot />
-    </main>
+    <div class="shell">
+      <Nav />
+      <main id="main" class="page">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

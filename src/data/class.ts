@@ -1,6 +1,7 @@
 /**
- * Class facts for the holding page / v0.
- * Bracketed fields must be replaced before public launch (D003, O001, O002).
+ * Free Body class facts and weather call (`/free-body`).
+ * Replace park name before public launch (D003 / O004).
+ * FIND handle comes from site.instagram when set.
  */
 
 export interface WeatherCall {
@@ -20,7 +21,6 @@ export interface ClassFacts {
   cost: string;
   level: string;
   bring: string;
-  find: string;
   notes: string[];
   voice: string;
   revision: string;
@@ -34,11 +34,10 @@ export const classFacts: ClassFacts = {
   kicker: "Yoga in the park",
   title: "Free Body",
   when: "Sundays · 9:00 AM",
-  where: "[Park name], Tustin",
+  where: "Park TBD, Tustin",
   cost: "Donation-based",
   level: "All levels",
   bring: "A mat",
-  find: "@[handle]",
   notes: [
     "60 min vinyasa.",
     "No experience needed.",

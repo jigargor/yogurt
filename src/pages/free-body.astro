@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import WeatherCall from "../components/WeatherCall.astro";
+import TitleBlock from "../components/TitleBlock.astro";
+import { classFacts } from "../data/class";
+
+const description =
+  "Free Body: Sunday park yoga in Tustin. Sixty minutes, all levels, donation-based. Weather call on this page.";
+---
+
+<Base title={classFacts.title} description={description}>
+  <p class="kicker">{classFacts.kicker}</p>
+  <h1 class="headline">{classFacts.title}</h1>
+
+  <div class="meta-row" aria-label="Drawing metadata">
+    <span>{classFacts.dwg}</span>
+    <span>{classFacts.sheet}</span>
+    <span>{classFacts.scale}</span>
+  </div>
+
+  <p class="voice">{classFacts.voice}</p>
+
+  <WeatherCall />
+  <TitleBlock />
+
+  <p class="rev">{classFacts.revision}</p>
+</Base>

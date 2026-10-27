@@ -1,0 +1,45 @@
+---
+import { classFacts } from "../data/class";
+import { instagramLabel } from "../data/site";
+
+const find = instagramLabel() ?? "Instagram handle pending";
+---
+
+<section class="title-block" aria-label="Class title block">
+  <div class="cell">
+    <p class="cell-label">When</p>
+    <p class="cell-value">{classFacts.when}</p>
+  </div>
+  <div class="cell">
+    <p class="cell-label">Where</p>
+    <p class="cell-value">{classFacts.where}</p>
+  </div>
+  <div class="cell">
+    <p class="cell-label">Cost</p>
+    <p class="cell-value">{classFacts.cost}</p>
+  </div>
+  <div class="cell">
+    <p class="cell-label">Level</p>
+    <p class="cell-value">{classFacts.level}</p>
+  </div>
+  <div class="cell">
+    <p class="cell-label">Bring</p>
+    <p class="cell-value">{classFacts.bring}</p>
+  </div>
+  <div class="cell">
+    <p class="cell-label">Find</p>
+    <p class="cell-value">{find}</p>
+  </div>
+  <div class="cell cell-span">
+    <p class="cell-label">Notes</p>
+    <ol class="notes">
+      {
+        classFacts.notes.map((note, i) => (
+          <li>
+            {i + 1}. {note}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

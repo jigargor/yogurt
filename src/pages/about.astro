@@ -1,0 +1,63 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, mailtoHref, instagramHref, instagramLabel } from "../data/site";
+
+const description = `${site.founder} · ${site.founderRole}. ${site.scope}`;
+const mail = mailtoHref("Métier contact");
+const ig = instagramHref();
+const igLabel = instagramLabel();
+---
+
+<Base title="About" description={description}>
+  <p class="kicker">{site.name}</p>
+  <h1 class="headline">About</h1>
+
+  <section class="prose-block" aria-labelledby="person">
+    <h2 id="person" class="section-label">Person</h2>
+    <p class="person-name">{site.founder}</p>
+    <p class="muted">{site.founderRole}</p>
+    <p class="lede tight">
+      Yoga teacher (RYT-200 in progress) and certified personal trainer. Weekly
+      park class and one-to-one training under {site.name}.
+    </p>
+  </section>
+
+  <section class="prose-block scope-block" aria-labelledby="scope">
+    <h2 id="scope" class="section-label">Scope</h2>
+    <p class="voice tight">{site.scope}</p>
+    <p class="muted">
+      This site does not offer therapy, counseling, or treatment. Work at a
+      treatment center stays there.
+    </p>
+    <p class="muted">
+      Practice here is wholistic in the ordinary sense: body, mind, and the rest
+      of a life. The word is a compass, not a product name.
+    </p>
+  </section>
+
+  <section class="prose-block" aria-labelledby="contact">
+    <h2 id="contact" class="section-label">Contact</h2>
+    <ul class="contact-list">
+      {
+        mail ? (
+          <li>
+            <a href={mail}>{site.email}</a>
+          </li>
+        ) : (
+          <li class="muted">Email: set in site data before launch</li>
+        )
+      }
+      {
+        ig && igLabel ? (
+          <li>
+            <a href={ig} rel="noopener noreferrer">
+              {igLabel}
+            </a>
+          </li>
+        ) : (
+          <li class="muted">Instagram: set in site data before launch</li>
+        )
+      }
+    </ul>
+  </section>
+</Base>

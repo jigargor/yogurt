@@ -1,0 +1,21 @@
+---
+import { classFacts } from "../data/class";
+
+const { weather } = classFacts;
+const label =
+  weather.status === "on"
+    ? "On"
+    : weather.status === "cancelled"
+      ? "Cancelled"
+      : "Moved";
+---
+
+<section class="weather" aria-label="Weather call">
+  <p class="cell-label">Weather</p>
+  <p class="weather-status" data-status={weather.status}>
+    {label}
+    {" · "}
+    {weather.forDate}
+  </p>
+  <p class="muted">{weather.note}</p>
+</section>

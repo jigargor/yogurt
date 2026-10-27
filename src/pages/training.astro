@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, mailtoHref } from "../data/site";
+import { training } from "../data/training";
+
+const description =
+  "Personal training with Métier. Strength work with clear scope. Inquire for rates.";
+const inquire = mailtoHref(training.inquireSubject);
+---
+
+<Base title={training.title} description={description}>
+  <p class="kicker">{site.name}</p>
+  <h1 class="headline">{training.title}</h1>
+  <p class="lede">{training.summary}</p>
+
+  <section class="prose-block" aria-labelledby="for-whom">
+    <h2 id="for-whom" class="section-label">Who it is for</h2>
+    <p>{training.forWhom}</p>
+  </section>
+
+  <section class="prose-block" aria-labelledby="rates">
+    <h2 id="rates" class="section-label">Rates</h2>
+    <p>{training.rates}</p>
+    <p class="muted">{training.privates}</p>
+  </section>
+
+  <section class="inquire" aria-labelledby="inquire">
+    <h2 id="inquire" class="section-label">Inquire</h2>
+    {
+      inquire ? (
+        <p>
+          <a class="cta-link" href={inquire}>
+            Email {site.email}
+          </a>
+        </p>
+      ) : (
+        <p class="muted">
+          Inquire path opens when the contact email is set in site data. No
+          online checkout on this site.
+        </p>
+      )
+    }
+  </section>
+</Base>

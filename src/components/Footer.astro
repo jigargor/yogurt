@@ -1,0 +1,31 @@
+---
+import { site, mailtoHref, instagramHref, instagramLabel } from "../data/site";
+
+const mail = mailtoHref();
+const ig = instagramHref();
+const igLabel = instagramLabel();
+---
+
+<footer class="site-footer">
+  <p class="footer-brand">{site.name}</p>
+  <p class="muted">{site.tagline}</p>
+  <p class="footer-links">
+    {
+      mail ? (
+        <a href={mail}>{site.email}</a>
+      ) : (
+        <span>Email: set in site data before launch</span>
+      )
+    }
+    {
+      ig && igLabel && (
+        <>
+          <span aria-hidden="true"> · </span>
+          <a href={ig} rel="noopener noreferrer">
+            {igLabel}
+          </a>
+        </>
+      )
+    }
+  </p>
+</footer>
