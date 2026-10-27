@@ -1,0 +1,30 @@
+---
+description: Free Body design tokens and bans
+globs: src/**/*.{astro,css}
+alwaysApply: false
+---
+
+# Design Rules
+
+Spec: `design/free-body/README.md`. Tokens live in `src/styles/global.css`.
+
+## Tokens
+
+- ALL color, spacing, and type scale are CSS variables. No ad-hoc hex in components.
+- Palette: `--paper` #E9EFE2, `--cell` #F3F6EF, `--line` #9DB896, `--ink` #1F2B27,
+  `--red` #B5392A.
+- Spacing on the 18 px cell; major every 5 cells.
+- Two families only: Space Grotesk (display) and IBM Plex Mono (labels, notes).
+
+## Emphasis
+
+- Red once per view for revision marks, weather cancelled/moved, or force-like
+  callouts. Not for body text.
+- Graph-paper ground comes from tokens; do not invent a second texture system.
+
+## Banned patterns
+
+- Wellness stock art (lotuses, mandalas, aura gradients).
+- Soft shadows, large radii, purple gradients.
+- A third font family.
+- Dark mode toggle (v0 is light / paper only unless an ADR changes it).

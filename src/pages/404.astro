@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Not found"
+  description="That sheet is not in this set."
+  noindex={true}
+>
+  <div class="frame">
+    <p class="kicker">Sheet missing</p>
+    <h1 class="headline">404</h1>
+    <div class="stack" style="margin-top: var(--space-3);">
+      <p class="voice">That sheet is not in this set.</p>
+      <p class="muted">
+        <a href="/">Back to Free Body</a>
+      </p>
+    </div>
+  </div>
+</Base>

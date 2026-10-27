@@ -1,0 +1,37 @@
+---
+description: Free Body voice for every visitor-readable string
+globs:
+alwaysApply: true
+---
+
+# Voice Rules
+
+Every string a visitor can read is surface: page copy, button labels, form states,
+error messages, the 404, the footer, meta descriptions, commit messages that land
+in changelogs.
+
+## Register
+
+Precision and restraint. Specific. Dry. Prefer the measurement over the mood.
+
+| Sound like | Not this |
+|---|---|
+| Sunday morning. Sixty minutes. Bring a mat. | Begin your journey / hold space |
+| Tolerances: generous. | Judgement-free zone |
+| Donation-based. No one turned away. | Abundance / namaste marketing |
+
+## Hard bans
+
+- Em dashes and en dashes. Use commas, periods, colons, or middle dots (`·`).
+- Genre vocabulary: journey, hold space, zen, lotus, Om, chakras, mandalas,
+  sacred, unlock, empower (and cousins).
+- Clinical or treatment claims on this site (therapy, counseling, healing-as-cure).
+  Scope baseline is D006 in `docs/02-decision-log.md`.
+- Placeholder brackets shipping to a public URL (`[Park name]`, `@[handle]`).
+- Exclamation spam and soft upsell language.
+
+## Tone by surface
+
+- **Holding / class page:** facts title block, weather call, one voice line, notes.
+- **404:** dry, one way back.
+- **Legal / scope:** short, plain, no disclaimers that sound like ads.

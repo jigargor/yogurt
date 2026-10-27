@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import { classFacts } from "../data/class";
+
+const description =
+  "Sunday park yoga in Tustin. Sixty minutes, all levels, donation-based. Weather call on this page.";
+---
+
+<Base title="Yoga in the park" description={description}>
+  <div class="frame">
+    <p class="kicker">{classFacts.kicker}</p>
+    <h1 class="headline">{classFacts.title}</h1>
+
+    <div class="meta-row" aria-label="Drawing metadata">
+      <span>{classFacts.dwg}</span>
+      <span>{classFacts.sheet}</span>
+      <span>{classFacts.scale}</span>
+    </div>
+
+    <p class="voice">{classFacts.voice}</p>
+
+    <section class="weather" aria-label="Weather call">
+      <p class="cell-label">Weather</p>
+      <p class="weather-status" data-status={classFacts.weather.status}>
+        {classFacts.weather.status === "on" && "On"}
+        {classFacts.weather.status === "cancelled" && "Cancelled"}
+        {classFacts.weather.status === "moved" && "Moved"}
+        {" · "}
+        {classFacts.weather.forDate}
+      </p>
+      <p class="muted">{classFacts.weather.note}</p>
+    </section>
+
+    <section class="title-block" aria-label="Class title block">
+      <div class="cell">
+        <p class="cell-label">When</p>
+        <p class="cell-value">{classFacts.when}</p>
+      </div>
+      <div class="cell">
+        <p class="cell-label">Where</p>
+        <p class="cell-value">{classFacts.where}</p>
+      </div>
+      <div class="cell">
+        <p class="cell-label">Cost</p>
+        <p class="cell-value">{classFacts.cost}</p>
+      </div>
+      <div class="cell">
+        <p class="cell-label">Level</p>
+        <p class="cell-value">{classFacts.level}</p>
+      </div>
+      <div class="cell">
+        <p class="cell-label">Bring</p>
+        <p class="cell-value">{classFacts.bring}</p>
+      </div>
+      <div class="cell">
+        <p class="cell-label">Find</p>
+        <p class="cell-value">{classFacts.find}</p>
+      </div>
+      <div class="cell cell-span">
+        <p class="cell-label">Notes</p>
+        <ol class="notes">
+          {classFacts.notes.map((note, i) => (
+            <li>
+              {i + 1}. {note}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <p class="rev">{classFacts.revision}</p>
+  </div>
+</Base>

@@ -1,0 +1,27 @@
+# build output
+dist/
+.output/
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# secrets
+.dev.vars
+.env
+.env.*
+*.key
+*.pem
+
+# cloudflare
+.wrangler/
+
+# logs
+npm-debug.log*
+*.log
+
+# os / editor
+.DS_Store
+Thumbs.db
